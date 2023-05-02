@@ -1,7 +1,8 @@
 import { createClient } from "@supabase/supabase-js";
 import { Auth } from "@supabase/auth-ui-react";
 import { useNavigate } from "react-router-dom";
-import { ThemeSupa } from "@supabase/auth-ui-shared";
+import { ThemeMinimal, ThemeSupa } from "@supabase/auth-ui-shared";
+import "./loginPage.css";
 
 const supabase = createClient(
   "https://mdmtycwrkpjrzfejuznt.supabase.co",
@@ -13,15 +14,17 @@ function LoginPage() {
 
   supabase.auth.onAuthStateChange(async (e) => {
     if (e == "SIGNED_IN") {
-      navigate("/success");
+      navigate("/home");
     } else {
       navigate("/");
     }
   });
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className="Login">
+        <img className="log-img" src="src\assets\pexels-gianluca-grisenti-4215113.jpg" alt="" />
+      <header className="Login-header">
+        <h1>Welcome to Symphony Flow</h1>
         <Auth
           supabaseClient={supabase}
           appearance={{ theme: ThemeSupa }}
